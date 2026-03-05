@@ -8,10 +8,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -19,14 +17,14 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
+      - name: Install
         run: npm ci
 
       - name: Build
         run: npm run build
 
-      - name: Upload artifacts
+      - name: Upload dist
         uses: actions/upload-artifact@v4
         with:
-          name: dist
+          name: LUMA-dist
           path: dist/**
